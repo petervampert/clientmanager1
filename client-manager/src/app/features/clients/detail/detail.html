@@ -1,0 +1,72 @@
+<div class="page-container">
+  <div class="page-header">
+    <button mat-icon-button routerLink="/clients" aria-label="Back">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Client Details</h1>
+    @if (client()) {
+      <div class="header-actions">
+        <button mat-stroked-button color="primary"
+                [routerLink]="['/clients', client()!.id, 'edit']">
+          <mat-icon>edit</mat-icon> Edit
+        </button>
+        <button mat-stroked-button color="warn" (click)="deleteClient()">
+          <mat-icon>delete</mat-icon> Delete
+        </button>
+      </div>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="loading-overlay">
+      <mat-spinner diameter="48"></mat-spinner>
+    </div>
+  } @else if (client(); as c) {
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="avatar">
+          {{ c.firstName[0] }}{{ c.lastName[0] }}
+        </div>
+        <mat-card-title>{{ c.firstName }} {{ c.lastName }}</mat-card-title>
+        <mat-card-subtitle>Client #{{ c.id }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content class="detail-content">
+        <div class="detail-row">
+          <mat-icon>email</mat-icon>
+          <div>
+            <span class="label">Email</span>
+            <span class="value">{{ c.email }}</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <mat-icon>phone</mat-icon>
+          <div>
+            <span class="label">Phone</span>
+            <span class="value">{{ c.phone || '—' }}</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <mat-icon>location_on</mat-icon>
+          <div>
+            <span class="label">Address</span>
+            <span class="value">{{ c.address || '—' }}</span>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="meta">
+          <span>Registered: {{ c.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+          @if (c.updatedAt) {
+            <span>Last updated: {{ c.updatedAt | date:'dd/MM/yyyy HH:mm' }}</span>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

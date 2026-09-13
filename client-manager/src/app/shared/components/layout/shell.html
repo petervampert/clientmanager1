@@ -1,0 +1,30 @@
+<div class="app-layout">
+  <mat-toolbar color="primary" class="app-toolbar">
+    <span class="app-title">
+      <mat-icon class="title-icon">people</mat-icon>
+      Client Manager
+    </span>
+
+    <nav class="nav-links">
+      <a mat-button routerLink="/clients" routerLinkActive="active-link">
+        <mat-icon>group</mat-icon>
+        Clients
+      </a>
+    </nav>
+
+    <span class="spacer"></span>
+
+    <span class="username" [matTooltip]="'Logged in as ' + authService.currentUsername()">
+      <mat-icon>account_circle</mat-icon>
+      {{ authService.currentUsername() }}
+    </span>
+
+    <button mat-icon-button (click)="authService.logout()" matTooltip="Sign out" aria-label="Sign out">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <main class="app-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,59 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 8px;
+
+  .app-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: inherit;
+
+    .title-icon { font-size: 1.4rem; }
+  }
+
+  .nav-links {
+    display: flex;
+    margin-left: 16px;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: rgba(255, 255, 255, 0.85);
+      border-radius: 4px;
+
+      &.active-link {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+      }
+    }
+  }
+
+  .spacer { flex: 1; }
+
+  .username {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    cursor: default;
+    margin-right: 4px;
+  }
+}
+
+.app-content {
+  flex: 1;
+  background: #f5f5f5;
+}
