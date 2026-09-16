@@ -1,21 +1,130 @@
-# .NET
+###############################################################################
+# C# / .NET
+###############################################################################
+
+# Build output
 bin/
 obj/
-*.user
-*.suo
+
+# Visual Studio files
 .vs/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.rsuser
+
+# Rider / JetBrains
+.idea/
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!**/packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# MSBuild
+*.pubxml
+*.pubxml.user
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# Entity Framework
+migrations/*.Designer.cs
+# (keep Migrations folder itself tracked)
+
+# SQLite databases
 *.db
 *.db-shm
 *.db-wal
+*.sqlite
+*.sqlite3
 
+# Publish profiles
+**/Properties/PublishProfiles/
+
+# Secrets / config overrides
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+
+# Logs
+*.log
+logs/
+
+###############################################################################
 # Angular / Node
+###############################################################################
+
+# Dependencies
 node_modules/
+
+# Build output
 dist/
+tmp/
+out-tsc/
+
+# Angular CLI cache
 .angular/
 
-# Environment secrets (keep structure, ignore production overrides if needed)
+# Angular SSR
+.cache/
+
+# Environment (keep both tracked; ignore prod-only secrets if needed)
 # src/environments/environment.prod.ts
 
-# OS
+# TypeScript incremental compilation cache
+*.tsbuildinfo
+
+# ESLint / Prettier cache
+.eslintcache
+.stylelintcache
+
+# Karma test output
+/coverage
+
+# npm / yarn / pnpm
+.npm
+.yarn-integrity
+yarn-error.log
+npm-debug.log*
+yarn-debug.log*
+package-lock.json.bak
+
+###############################################################################
+# OS / Editor
+###############################################################################
+
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# VS Code (keep workspace settings if desired; ignore personal settings)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Vim swap files
+*.swp
+*.swo
