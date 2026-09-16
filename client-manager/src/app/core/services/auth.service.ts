@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.models';
+import { environment } from '../../../environments/environment';
 
 const TOKEN_KEY = 'cm_token';
 const USERNAME_KEY = 'cm_username';
@@ -10,7 +11,7 @@ const EXPIRES_KEY = 'cm_expires';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:5000/api/auth';
+  private readonly apiUrl = `${environment.apiUrl}/auth`;
 
   private _token = signal<string | null>(localStorage.getItem(TOKEN_KEY));
   private _username = signal<string | null>(localStorage.getItem(USERNAME_KEY));

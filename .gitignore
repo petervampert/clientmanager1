@@ -1,0 +1,21 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.db
+*.db-shm
+*.db-wal
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+
+# Environment secrets (keep structure, ignore production overrides if needed)
+# src/environments/environment.prod.ts
+
+# OS
+.DS_Store
+Thumbs.db
