@@ -45,7 +45,11 @@ builder.Services.AddScoped<IPdfReportService, PdfReportService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular", policy =>
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(
+                "http://localhost:4200",  // local dev
+                "http://localhost:80",    // docker
+                "http://localhost"        // docker (default port)
+              )
               .AllowAnyHeader()
               .AllowAnyMethod());
 });

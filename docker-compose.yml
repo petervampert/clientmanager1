@@ -1,0 +1,39 @@
+services:
+
+  # ── ASP.NET Core API ──────────────────────────────────────────────────────
+  api:
+    build:
+      context: ./ClientManager.API
+      dockerfile: Dockerfile
+    container_name: clientmanager-api
+    restart: unless-stopped
+    ports:
+      - "5000:8080"
+    volumes:
+      - db-data:/app/data
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - clientmanager-net
+
+  # ── Angular (nginx) ───────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./client-manager
+      dockerfile: Dockerfile
+    container_name: clientmanager-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - clientmanager-net
+
+volumes:
+  db-data:
+    driver: local
+
+networks:
+  clientmanager-net:
+    driver: bridge
