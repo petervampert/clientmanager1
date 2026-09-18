@@ -67,6 +67,12 @@ builder.Services.AddSwaggerGen(options =>
         Description = "REST API for managing clients with JWT authentication."
     });
 
+    // Include XML doc comments in Swagger UI
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+        options.IncludeXmlComments(xmlPath);
+
     // Add JWT Bearer auth input to Swagger UI
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {

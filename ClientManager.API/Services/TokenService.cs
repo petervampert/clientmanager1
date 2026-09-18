@@ -6,13 +6,30 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ClientManager.API.Services;
 
+/// <summary>
+/// Generates signed JWT Bearer tokens for authenticated users.
+/// </summary>
 public interface ITokenService
 {
+    /// <summary>
+    /// Creates a signed JWT token for the given user.
+    /// </summary>
+    /// <param name="user">The authenticated user. Claims are built from <see cref="User.Id"/> and <see cref="User.Username"/>.</param>
+    /// <returns>
+    /// A tuple containing the serialized token string and the UTC expiry <see cref="DateTime"/>.
+    /// </returns>
     (string Token, DateTime ExpiresAt) GenerateToken(User user);
 }
 
+/// <inheritdoc />
 public class TokenService(IConfiguration configuration) : ITokenService
 {
+    /// <inheritdoc />
+    /// <remarks>
+    /// Token claims: <c>sub</c> = user ID, <c>unique_name</c> = username, <c>jti</c> = new GUID.<br/>
+    /// Signing algorithm: HMAC-SHA256.<br/>
+    /// Expiry is controlled by <c>Jwt:ExpiresInHours</c> in configuration (default 8 hours).
+    /// </remarks>
     public (string Token, DateTime ExpiresAt) GenerateToken(User user)
     {
         var jwtSection = configuration.GetSection("Jwt");
